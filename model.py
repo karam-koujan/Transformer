@@ -1,27 +1,11 @@
 import torch
 import torch.nn as nn
-from dataclasses import dataclass
 import torch.nn.functional as F
 
 def get_device():
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = get_device()
 
-@dataclass
-class Config :
-    model_d: int
-    max_sequence_len: int
-    ger_vocab_size: int
-    eng_vocab_size : int
-    n_layers : int
-    n_heads : int
-    eng_to_index : dict
-    ger_to_index : dict
-    start_token : str
-    end_token : str
-    pad_token: str
-    dropout_p : int = 0.1
-    hidden_size : int = 2048
 
 class Tokenizer(nn.Module) :
       def __init__(self,config,layer_type) :
